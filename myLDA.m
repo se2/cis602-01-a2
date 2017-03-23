@@ -9,7 +9,7 @@ Dim = nClass - 1;
 sampleMean = mean(trainFea, 1);
 trainFea = (trainFea - repmat(sampleMean, nSmp, 1));
 
-Sw = zeros(900, 900);
+Sw = zeros();
 
 for i=1:nClass
     index = find(trainLabel == classLabel(i));
@@ -19,7 +19,7 @@ end
 
 centerData = mean(trainFea);
 
-Sb = zeros(900, 900);
+Sb = zeros();
 
 for i=1:nClass
     index = find(trainLabel == classLabel(i));
