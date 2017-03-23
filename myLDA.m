@@ -1,10 +1,16 @@
 function [eigvector, eigvalue] = lda(trainLabel, trainFea)
 
+% call myPCA to reduce dimension
+[eigvectorPCA, eigvaluePCA] = myPCA(trainFea);
+trainFea = trainFea * eigvectorPCA; 
+
+% normalize data
+trainFea = NormalizeFea(trainFea);
+
 [nSmp, nFea] = size(trainFea);
 
 classLabel = unique(trainLabel);
 nClass = length(classLabel);
-Dim = nClass - 1;
 
 sampleMean = mean(trainFea, 1);
 trainFea = (trainFea - repmat(sampleMean, nSmp, 1));
@@ -28,8 +34,6 @@ for i=1:nClass
     Sb = Sb + ni * (classMean - centerData)' * (classMean - centerData);
 end
 
-% S = Sb * Sw.^-1;
-
 [eigvector, eigvalue] = eig(Sb, Sw);
-% [eigvector, eigvalue] = eig(S);
+
 

@@ -1,17 +1,21 @@
 load('LFW_label.mat') 
 load('LFW_VGG.mat')
 
+% % convert data to double - use with LBP only
+% fea = im2double(fea);
+
+% call myPCA to reduce dimension
+[eigvectorPCA, eigvaluePCA] = myPCA(fea);
+fea = fea * eigvectorPCA';
+
 Score = zeros(1,6000);
 for i=1:6000
     indexf1 = imgIdx(i,1);
     indexf2 = imgIdx(i,2);
-%     f1 = im2double(fea(indexf1,:));
-%     f2 = im2double(fea(indexf2,:));
     f1 = fea(indexf1,:);
     f2 = fea(indexf2,:);
-    subscore = pdist([f1;f2],'cosine');
+    subscore = pdist([f2;f1],'cosine');
     Score(:,i) = subscore;
-%     subscore = pdist([pca(fea(indexf1,:));pca(fea(indexf2,:))],'cosine');
 
 end
 Label = zeros(1, 6000);
@@ -30,4 +34,4 @@ for i=1:10
 end
 
 [t,f,thres] = roc(Label, Score);
-plotroc(Label, Score);
+plot(f,t);

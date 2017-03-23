@@ -24,12 +24,12 @@ testFea = Data(testInd,:);
 testLabel = Label(testInd,:);
 
 %% Please uncomment this part if run PCA
-% pca
+% % pca
 % tic;
 % options=[];
-% options.ReducedDim=100;
-% [eigvector, eigvalue] = PCA(trainFea,options);
-% % [eigvector, eigvalue] = myPCA(trainFea);
+% % options.ReducedDim=100;
+% % [eigvector, eigvalue] = PCA(trainFea,options);
+% [eigvector, eigvalue] = myPCA(trainFea);
 % pcaTime = toc;
 % pcaTestFea = testFea * eigvector;
 % pcaTrainFea = trainFea * eigvector;
@@ -43,10 +43,10 @@ testLabel = Label(testInd,:);
 % fprintf('the running time is %f.\n', pcaTime);
 
 %% Please uncomment this part if run LDA
-% lda
+% % lda
 tic;
-options = [];
-options.Fisherface = 1;
+% options = [];
+% options.Fisherface = 1;
 % [eigvector, eigvalue] = LDA(trainLabel, options, trainFea);
 [eigvector, eigvalue] = myLDA(trainLabel, trainFea);
 ldaTrainFea = trainFea * eigvector;
