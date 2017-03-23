@@ -1,4 +1,4 @@
-function [eigvector, eigvalue] = pca(data)
+function [eigvector, eigvalue] = pca(data, reduceddim)
 
 % center data
 mn = mean(data);
@@ -12,4 +12,4 @@ covariance = (datacenter' * datacenter);
 % covariance = cov(data);
 
 % calculate the eigenvectors and eigenvalues 
-[eigvector, eigvalue] = eig(covariance);
+[eigvector, eigvalue] = eigs(covariance, reduceddim);

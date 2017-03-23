@@ -28,6 +28,7 @@ centerData = mean(trainFea);
 Sb = zeros();
 
 for i=1:nClass
+    
     index = find(trainLabel == classLabel(i));
     classMean = mean(trainFea(index,:),1);
     [ni, nf] = size(trainFea(index,:));

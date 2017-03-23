@@ -4,7 +4,8 @@ function [t , f] = myROC(data, pairlabel)
     data = im2double(data);
 
     % call myPCA to reduce dimension
-    [eigvectorPCA, eigvaluePCA] = myPCA(data);
+    options = [];
+    [eigvectorPCA, eigvaluePCA] = PCA(data, options);
     data = data * eigvectorPCA';
 
     [nPair, nFea] = size(pairlabel);
