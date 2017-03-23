@@ -48,7 +48,7 @@ tic;
 options = [];
 options.Fisherface = 1;
 % [eigvector, eigvalue] = LDA(trainLabel, options, trainFea);
-[eigvector, eigvalue] = myLDA(trainLabel, options, trainFea);
+[eigvector, eigvalue] = myLDA(trainLabel, trainFea);
 ldaTrainFea = trainFea * eigvector;
 ldaTestFea = testFea * eigvector;
 ldaTime = toc;

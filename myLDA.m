@@ -1,4 +1,4 @@
-function [eigvector, eigvalue] = lda(trainLabel, options, trainFea)
+function [eigvector, eigvalue] = lda(trainLabel, trainFea)
 
 [nSmp, nFea] = size(trainFea);
 
