@@ -26,10 +26,12 @@ testLabel = Label(testInd,:);
 %% Please uncomment this part if run PCA
 % % pca
 tic;
-options=[];
+% options=[];
 % options.ReducedDim=100;
 % [eigvector, eigvalue] = PCA(trainFea,options);
-[eigvector, eigvalue] = myPCA(trainFea, 100);
+
+dim = 500;
+[eigvector, eigvalue] = myPCA(trainFea);
 pcaTime = toc;
 pcaTestFea = testFea * eigvector;
 pcaTrainFea = trainFea * eigvector;
