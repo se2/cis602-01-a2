@@ -7,7 +7,9 @@ function [t , f] = myROC(data, pairlabel)
     [eigvectorPCA, eigvaluePCA] = myPCA(data);
     data = data * eigvectorPCA';
 
-    Score = zeros(1,6000);
+    [nPair, nFea] = size(pairlabel);
+    
+    Score = zeros(1,nPair);
     for i=1:6000
         indexf1 = pairlabel(i,1);
         indexf2 = pairlabel(i,2);
@@ -17,7 +19,7 @@ function [t , f] = myROC(data, pairlabel)
         Score(:,i) = subscore;
 
     end
-    Label = zeros(1, 6000);
+    Label = zeros(1,nPair);
     for i=1:10
         for j=1:600 * i
             right = 600 * i;
@@ -33,7 +35,5 @@ function [t , f] = myROC(data, pairlabel)
     end
 
     [t,f,thres] = roc(Label, Score);
-    % plotroc(Label, Score);
-    fprintf('Done %f.\n');
 end
 
