@@ -25,40 +25,39 @@ testLabel = Label(testInd,:);
 
 %% Please uncomment this part if run PCA
 % % pca
-tic;
-% options=[];
-% options.ReducedDim=100;
-% [eigvector, eigvalue] = PCA(trainFea,options);
-
-dim = 500;
-[eigvector, eigvalue] = myPCA(trainFea);
-pcaTime = toc;
-pcaTestFea = testFea * eigvector;
-pcaTrainFea = trainFea * eigvector;
-
-% call nearest neighbor classifier of matlab
-predictLabel = knnclassify(pcaTestFea, pcaTrainFea, trainLabel);
-
-acc = sum(predictLabel == testLabel)/length(testLabel);
-
-fprintf('the reconition accuracy with pca is %f.\n', acc);
-fprintf('the running time is %f.\n', pcaTime);
-
-%% Please uncomment this part if run LDA
-% % lda
 % tic;
-% % options = [];
-% % options.Fisherface = 1;
-% % [eigvector, eigvalue] = LDA(trainLabel, options, trainFea);
-% [eigvector, eigvalue] = myLDA(trainLabel, trainFea);
-% ldaTrainFea = trainFea * eigvector;
-% ldaTestFea = testFea * eigvector;
-% ldaTime = toc;
+% % options=[];
+% % options.ReducedDim=100;
+% % [eigvector, eigvalue] = PCA(trainFea,options);
+% 
+% [eigvector, eigvalue] = myPCA(trainFea);
+% pcaTime = toc;
+% pcaTestFea = testFea * eigvector;
+% pcaTrainFea = trainFea * eigvector;
 % 
 % % call nearest neighbor classifier of matlab
-% predictLabel = knnclassify(ldaTestFea, ldaTrainFea, trainLabel);
+% predictLabel = knnclassify(pcaTestFea, pcaTrainFea, trainLabel);
 % 
-% acc = sum(predictLabel == testLabel) / length(testLabel);
+% acc = sum(predictLabel == testLabel)/length(testLabel);
 % 
-% fprintf('the reconition accuracy with lda is %f.\n', acc);
-% fprintf('the running time is %f.\n', ldaTime);
+% fprintf('the reconition accuracy with pca is %f.\n', acc);
+% fprintf('the running time is %f.\n', pcaTime);
+
+%% Please uncomment this part if run LDA
+% % % lda
+tic;
+% options = [];
+% options.Fisherface = 1;
+% [eigvector, eigvalue] = LDA(trainLabel, options, trainFea);
+[eigvector, eigvalue] = myLDA(trainLabel, trainFea);
+ldaTrainFea = trainFea * eigvector;
+ldaTestFea = testFea * eigvector;
+ldaTime = toc;
+
+% call nearest neighbor classifier of matlab
+predictLabel = knnclassify(ldaTestFea, ldaTrainFea, trainLabel);
+
+acc = sum(predictLabel == testLabel) / length(testLabel);
+
+fprintf('the reconition accuracy with lda is %f.\n', acc);
+fprintf('the running time is %f.\n', ldaTime);

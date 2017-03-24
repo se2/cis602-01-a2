@@ -12,14 +12,12 @@ trainFea = NormalizeFea(trainFea);
 classLabel = unique(trainLabel);
 nClass = length(classLabel);
 
-sampleMean = mean(trainFea, 1);
-trainFea = (trainFea - repmat(sampleMean, nSmp, 1));
-
 Sw = zeros();
 
 for i=1:nClass
     index = find(trainLabel == classLabel(i));
     classMean = mean(trainFea(index,:), 1);
+    tempSw = (trainFea(index,:) - classMean);
     Sw = Sw + (trainFea(index,:) - classMean)' * (trainFea(index,:) - classMean);
 end
 
@@ -28,7 +26,6 @@ centerData = mean(trainFea);
 Sb = zeros();
 
 for i=1:nClass
-    
     index = find(trainLabel == classLabel(i));
     classMean = mean(trainFea(index,:),1);
     [ni, nf] = size(trainFea(index,:));
@@ -37,4 +34,5 @@ end
 
 [eigvector, eigvalue] = eig(Sb, Sw);
 
+end
 
