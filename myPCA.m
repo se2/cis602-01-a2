@@ -14,3 +14,4 @@ function [eigvector, eigvalue] = myPCA(data)
     % calculate the eigenvectors and eigenvalues 
     [eigvector, eigvalue] = eig(covariance);
 
+end

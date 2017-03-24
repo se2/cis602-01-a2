@@ -8,6 +8,6 @@ VGG = fea;
 [tVGG, fVGG] = myROC(VGG, imgIdx);
 
 plot(tLBP, fLBP, tVGG, fVGG);
-xlabel('False reject rate')
-ylabel('False accept rate')
+xlabel('False acceptance rate')
+ylabel('True acceptance rate')
 legend('LBP','VGG')

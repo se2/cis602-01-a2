@@ -6,7 +6,7 @@ function [t, f] = myROC(data, pairlabel)
     % call myPCA to reduce dimension
     options = [];
     [eigvectorPCA, eigvaluePCA] = PCA(data, options);
-    data = data * eigvectorPCA';
+    data = data * eigvectorPCA;
 
     [nPair, nFea] = size(pairlabel);
     
