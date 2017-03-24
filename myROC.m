@@ -1,4 +1,4 @@
-function [t , f] = myROC(data, pairlabel)
+function [t, f] = myROC(data, pairlabel)
 
     % convert data to double - use with LBP only
     data = im2double(data);
@@ -11,7 +11,7 @@ function [t , f] = myROC(data, pairlabel)
     [nPair, nFea] = size(pairlabel);
     
     Score = zeros(1,nPair);
-    for i=1:6000
+    for i=1:nPair
         indexf1 = pairlabel(i,1);
         indexf2 = pairlabel(i,2);
         f1 = data(indexf1,:);

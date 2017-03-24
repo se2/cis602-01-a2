@@ -24,7 +24,7 @@ testFea = Data(testInd,:);
 testLabel = Label(testInd,:);
 
 %% Please uncomment this part if run PCA
-% % pca
+% pca
 % tic;
 % % options=[];
 % % options.ReducedDim=100;
@@ -44,7 +44,7 @@ testLabel = Label(testInd,:);
 % fprintf('the running time is %f.\n', pcaTime);
 
 %% Please uncomment this part if run LDA
-% % % lda
+% lda
 tic;
 % options = [];
 % options.Fisherface = 1;
