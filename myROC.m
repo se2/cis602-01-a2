@@ -5,11 +5,12 @@ function [t, f] = myROC(data, pairlabel)
 
     % call myPCA to reduce dimension
     options = [];
+    options.ReducedDim=100;
     [eigvectorPCA, eigvaluePCA] = PCA(data, options);
     data = data * eigvectorPCA;
 
     [nPair, nFea] = size(pairlabel);
-    
+
     Score = zeros(1,nPair);
     for i=1:nPair
         indexf1 = pairlabel(i,1);
@@ -26,7 +27,7 @@ function [t, f] = myROC(data, pairlabel)
             right = 600 * i;
             left = (i-1)*600;
             mid = (left+right)/2;
-            if j<=mid && j>left 
+            if j<=mid && j>left
                 Label(:,j) = 1;
             end
             if j>mid && j <= right
@@ -37,4 +38,3 @@ function [t, f] = myROC(data, pairlabel)
 
     [t,f,thres] = roc(Label, Score);
 end
-
