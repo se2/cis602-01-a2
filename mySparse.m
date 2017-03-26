@@ -1,15 +1,21 @@
 load('ORL.mat');
 % % call LDA
-options.Fisherface = 1;
-[eigVector, eigValue] = LDA(gnd, options, fea);
-fea = fea * eigVector;
+% options.Fisherface = 1;
+% [eigVector, eigValue] = LDA(gnd, options, fea);
+% fea = fea * eigVector;
 % 
 % call PCA
 % [eigVector, eigValue] = PCA(fea);
 % fea = fea * eigVector;
 
+% applying PCA first
+options=[];
+options.ReducedDim=100;
+[eigvectorPCA, eigvaluePCA] = PCA(fea,options);
+fea = fea * eigvectorPCA;
+
 % normalize data
-% fea = NormalizeFea(fea);
+fea = NormalizeFea(fea);
 
 % size of fea
 [nS, nFea] = size(fea);

@@ -1,9 +1,5 @@
 function [eigvector, eigvalue] = myLDA(trainLabel, trainFea)
 
-    % call myPCA to reduce dimension
-    [eigvectorPCA, eigvaluePCA] = myPCA(trainFea);
-    trainFea = trainFea * eigvectorPCA;
-
     % normalize data
     trainFea = NormalizeFea(trainFea);
 
@@ -16,7 +12,8 @@ function [eigvector, eigvalue] = myLDA(trainLabel, trainFea)
         classMean = mean(trainFea(index,:), 1);
         Sw = Sw + (trainFea(index,:) - classMean)' * (trainFea(index,:) - classMean);
     end
-
+    
+    % center data
     centerData = mean(trainFea);
 
     Sb = zeros();
