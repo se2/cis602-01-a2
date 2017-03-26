@@ -1,18 +1,22 @@
-function [t, f] = myROC(data, pairlabel)
+function [t,f] = myROC(data, pairlabel)
 
 %     convert data to double - use with LBP only
     data = im2double(data);
+
 
 %     normalize data
     data = NormalizeFea(data);
     
 %     call PCA to reduce dimension
+
     options = [];
     options.ReducedDim=100;
     [eigvectorPCA, eigvaluePCA] = PCA(data, options);
     data = data * eigvectorPCA;
     
+
 %     get number of pairs
+
     [nPair, nFea] = size(pairlabel);
     Score = [];
         

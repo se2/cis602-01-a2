@@ -13,8 +13,8 @@ testInd = [];
 
 % make train/test index
 for i = 1: n_per
-        trainInd = [trainInd, (i-1)*n_sub+1: (i-1)*n_sub+numTrain];
-        testInd = [testInd, (i-1)*n_sub+numTrain+1: i*n_sub];
+    trainInd = [trainInd, (i-1)*n_sub+1: (i-1)*n_sub+numTrain];
+    testInd = [testInd, (i-1)*n_sub+numTrain+1: i*n_sub];
 end
 
 %generate training and testing data
@@ -49,7 +49,18 @@ tic;
 % options = [];
 % options.Fisherface = 1;
 % [eigvector, eigvalue] = LDA(trainLabel, options, trainFea);
-[eigvector, eigvalue] = myLDA(trainLabel, trainFea);
+
+% applying PCA first
+options=[];
+options.ReducedDim=100;
+[eigvectorPCA, eigvaluePCA] = PCA(trainFea,options);
+trainFea = trainFea * eigvectorPCA;
+testFea = testFea * eigvectorPCA;
+
+% call LDA
+% [eigvector, eigvalue] = myLDA(trainLabel, trainFea);
+[eigvector, eigvalue] = newLDA(trainLabel, trainFea);
+
 ldaTrainFea = trainFea * eigvector;
 ldaTestFea = testFea * eigvector;
 ldaTime = toc;

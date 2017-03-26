@@ -1,10 +1,12 @@
 function [eigvector, eigvalue] = myLDA(trainLabel, trainFea)
 
+
 %     call myPCA
     [eigvectorPCA, eigvaluePCA] = myPCA(trainFea);
     trainFea = trainFea * eigvectorPCA;
 
 %     normalize data
+
     trainFea = NormalizeFea(trainFea);
 
 %     extract class label and number of classes
@@ -13,6 +15,7 @@ function [eigvector, eigvalue] = myLDA(trainLabel, trainFea)
     
 %     init Sw, Sb and center of data
     Sw = zeros();
+
     Sb = zeros();
     centerData = mean(trainFea);
     
