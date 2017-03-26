@@ -1,3 +1,4 @@
+% load data
 load('LFW_label.mat')
 load('LFW_LBP.mat')
 LBP = fea;
@@ -7,6 +8,7 @@ VGG = fea;
 [tLBP, fLBP] = myROC(LBP, imgIdx);
 [tVGG, fVGG] = myROC(VGG, imgIdx);
 
+% plotting data
 plot(tLBP, fLBP, tVGG, fVGG);
 xlabel('False acceptance rate')
 ylabel('True acceptance rate')

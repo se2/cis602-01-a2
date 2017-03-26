@@ -1,13 +1,16 @@
-function [t, f] = myROC(data, pairlabel)
+function [t,f] = myROC(data, pairlabel)
 
     % convert data to double - use with LBP only
     data = im2double(data);
 
-    % call myPCA to reduce dimension
+    % call PCA to reduce dimension
     options = [];
     options.ReducedDim=100;
     [eigvectorPCA, eigvaluePCA] = PCA(data, options);
     data = data * eigvectorPCA;
+    
+    % normalize data
+    data = NormalizeFea(data);
 
     [nPair, nFea] = size(pairlabel);
 
